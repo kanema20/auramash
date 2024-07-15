@@ -38,7 +38,7 @@ const getKOLs = async () => {
             </thead>
             <tbody id="eloTableBody">
             {kols?.map(kol => (
-                <tr key={name}>
+                <tr key={kol.id}>
                     <td>
                     <a className="x-color" href={`https://x.com/${kol?.handle}`} target="_blank">{kol.handle}</a></td>
                     <td><img src={kol.pfp} /></td>

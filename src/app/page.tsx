@@ -73,14 +73,14 @@ export default function Home() {
         <h2>Who has more aura? Click to Choose. Winner Stays.</h2>
         <div className="img-wrapper">
           <div className="flex flex-col">
-            <Image src={kolOne?.pfp} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />
+            <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />
             <p>
             <a className="x-color" href={`https://x.com/${kolOne?.handle}`} target="_blank">{kolOne?.handle}</a>
             </p>
           </div>
           <h3 className="or-char">OR</h3>
           <div className="flex flex-col">
-            <Image src={kolTwo?.pfp} width={400} height={400} alt="Right Image" id="rightImg" onClick={() => clickRight()} />
+            <Image src={kolTwo?.pfp!} width={400} height={400} alt="Right Image" id="rightImg" onClick={() => clickRight()} />
             <p>
               <a className="x-color" href={`https://x.com/${kolTwo?.handle}`} target="_blank">{kolTwo?.handle}</a>
             </p>

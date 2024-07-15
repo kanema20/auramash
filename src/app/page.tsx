@@ -44,7 +44,10 @@ export default function Home() {
     if (!kolOne && !kolTwo) {
       getKOLs()
     }
-})
+    if (kolOne?.id === kolTwo?.id) {
+      getKOLs()
+    }
+  })
   
   // left wins, right loses
   function clickLeft() {
@@ -56,8 +59,8 @@ export default function Home() {
     getWinner(kolTwo!, kolOne!);
   }
 
-  console.log(kolOne);
-  console.log(kolTwo);
+  // console.log(kolOne);
+  // console.log(kolTwo);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -70,7 +73,7 @@ export default function Home() {
         <h3>
           Were we let in for our <span className="aura-color">aura</span>? No. Will we be judged by it? Yes.
         </h3>
-        <h2>Who has more aura? Click to Choose. Winner Stays.</h2>
+        <h2>Who has more aura? Click to Choose. Winner Stays (sometimes).</h2>
         <div className="img-wrapper">
           <div className="flex flex-col">
             <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />

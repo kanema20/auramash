@@ -1,7 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
-import path from "path";
 import Elo from '@studimax/elo';
-import KOL from '@/types/ct';
 import prisma from '../../lib/prisma'
 
 type Data = {
@@ -9,7 +7,6 @@ type Data = {
     kolOne?: any
     kolTwo?: any
 }
-
 
 export default async function handle(
     req: NextApiRequest,

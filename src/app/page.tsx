@@ -18,8 +18,8 @@ export default function Home() {
     // randomize KOL's
     const shuffled = data.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 2);  
-    console.log(data);
-    console.log(shuffled)
+    // console.log(data);
+    // console.log(shuffled)
     setKolOne(selected[0]);
     setKolTwo(selected[1]);
     return data;
@@ -34,7 +34,7 @@ export default function Home() {
       body: JSON.stringify({winner, loser}),
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     setKolOne(data.kolOne);
     setKolTwo(data.kolTwo);
     return

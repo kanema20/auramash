@@ -12,7 +12,7 @@ const getKOLs = async () => {
         },
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     setKols(data);
     return data;
     }

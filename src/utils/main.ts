@@ -1,5 +1,6 @@
+'use client'
 import path from "path";
-import fs from "fs";
+// import fs from "fs";
 
 // export function to get all file names in a folder
 export function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
@@ -13,16 +14,12 @@ export function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
       arrayOfFiles.push(file);
     }
   });
-
   return arrayOfFiles;
 }
 
-// Directory path you want to read
-const dirPath = 'images/ct/';
-
 const imgDir = "images/ct/";
-const arrayLength = 75;
-const imageArray: string[] = [], sessionStorageArray = [];
+const arrayLength = 90;
+const imageArray: string[] = []
 
 let baseRating = 1000;
 const k = 32; // K-factor for Elo rating system
@@ -62,52 +59,54 @@ export function eloRating(leftRating: number, rightRating: number, k: number, wi
 
 // update session value and get new image
 export function updateEloAndDisplay(leftWin: boolean) {
-  var leftImage = document.getElementById("leftImg");
-  // @ts-ignore: Object is possibly 'null'.
-  var leftImgName = getImgName(leftImage.src);
+  // var leftImage = document.getElementById("leftImg");
+  // // @ts-ignore: Object is possibly 'null'.
+  // var leftImgName = getImgName(leftImage.src);
   
-  var rightImage = document.getElementById("rightImg");
-  // @ts-ignore: Object is possibly 'null'.
-  var rightImgName = getImgName(rightImage.src);
+  // var rightImage = document.getElementById("rightImg");
+  // // @ts-ignore: Object is possibly 'null'.
+  // var rightImgName = getImgName(rightImage.src);
 
-  const storedLeft = sessionStorage.getItem(leftImgName);
-  const storedRight = sessionStorage.getItem(rightImgName);
+  // const storedLeft = sessionStorage.getItem(leftImgName);
+  // const storedRight = sessionStorage.getItem(rightImgName);
   
-  if (storedLeft == null) {
-    sessionStorage.setItem(leftImgName, baseRating.toString());
-  } 
+  // if (storedLeft == null) {
+  //   sessionStorage.setItem(leftImgName, baseRating.toString());
+  // } 
 
-  if (storedRight == null) {
-    sessionStorage.setItem(rightImgName, baseRating.toString());
-  }
+  // if (storedRight == null) {
+  //   sessionStorage.setItem(rightImgName, baseRating.toString());
+  // }
 
-  const leftRating = parseFloat(sessionStorage.getItem(leftImgName)!);
-  const rightRating = parseFloat(sessionStorage.getItem(rightImgName)!);
+  // const leftRating = parseFloat(sessionStorage.getItem(leftImgName)!);
+  // const rightRating = parseFloat(sessionStorage.getItem(rightImgName)!);
   
-  const result = eloRating(leftRating, rightRating, k, leftWin);
+  // const result = eloRating(leftRating, rightRating, k, leftWin);
 
-  // Update the Elo ratings for the next round
-  sessionStorage.setItem(leftImgName, result.leftRating.toString());
-  sessionStorage.setItem(rightImgName, result.rightRating.toString());
+  // // Update the Elo ratings for the next round
+  // sessionStorage.setItem(leftImgName, result.leftRating.toString());
+  // sessionStorage.setItem(rightImgName, result.rightRating.toString());
 
-  let rightImageSource;
-  let leftImageSource;
-  // change image for unclicked side
-  if (leftWin) {
-    // swap right image
-    do {
-      rightImageSource = imgDir + getRandomItem(imageArray);
-      // @ts-ignore: Object is possibly 'null'.
-    } while (rightImageSource === leftImage.src);
-    // @ts-ignore: Object is possibly 'null'.
-    rightImage.src = rightImageSource;
-  } else {
-    // swap left image
-    do {
-    leftImageSource = imgDir + getRandomItem(imageArray);
-    // @ts-ignore: Object is possibly 'null'.
-    } while (leftImageSource === rightImage.src);
-    // @ts-ignore: Object is possibly 'null'.
-    leftImage.src = leftImageSource;
-  }
+  // let rightImageSource;
+  // let leftImageSource;
+  // // change image for unclicked side
+  // if (leftWin) {
+  //   // swap right image
+  //   do {
+  //     rightImageSource = imgDir + getRandomItem(imageArray);
+  //     // @ts-ignore: Object is possibly 'null'.
+  //   } while (rightImageSource === leftImage.src);
+  //   // @ts-ignore: Object is possibly 'null'.
+  //   rightImage.src = rightImageSource;
+  // } else {
+  //   // swap left image
+  //   do {
+  //   leftImageSource = imgDir + getRandomItem(imageArray);
+  //   // @ts-ignore: Object is possibly 'null'.
+  //   } while (leftImageSource === rightImage.src);
+  //   // @ts-ignore: Object is possibly 'null'.
+  //   leftImage.src = leftImageSource;
+
+  // }
+  console.log("Elo ratings updated");
 }

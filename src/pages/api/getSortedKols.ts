@@ -6,10 +6,8 @@ export default async function handle(
     res: NextApiResponse,
   ) {
     const kols = await prisma.kOL.findMany({
-        where: {
-            aurarank: {
-                gte: 1
-            }
+        orderBy: {
+            aurarank: 'desc'
         }
     })
     return res.json(kols)

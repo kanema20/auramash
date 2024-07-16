@@ -1,6 +1,231 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+const kol2Data = [
+    {
+        "handle": "100trillionUSD",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40100trillionUSD.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "Irenezhao_",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40Irenezhao_.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "CL207",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40CL207.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "dwr",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40dwr.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "CC2Ventures",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40CC2Ventures.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "LynAldenContact",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40LynAldenContact.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "0xSisyphus",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%400xSisyphus.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "mdudas",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40mdudas.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "blknoiz06intern",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40blknoiz06intern.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "RyoshiResearch",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40RyoshiResearch.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "ChartSimpson",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40ChartSimpson.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "punk6529",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40punk6529.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "sassal0x",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40sassal0x.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "apolynya",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40apolynya.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "CrashiusClay69",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40CrashiusClay69.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "pmarca",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40pmarca.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "HugoMartingale",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40HugoMartingale.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "balajis",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40balajis.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "BigDickBull69",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40BigDickBull69.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "apatheticwhale",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40apatheticwhale.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "twobitidiot",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40twobitidiot.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "ETHEREUM_HABIBI",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40ETHEREUM_HABIBI.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "nic__carter",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40nic__carter.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "0xLawliette",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%400xLawliette.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "farokh",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40farokh.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "ColdBloodShill",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40ColdBloodShill.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "larpalt",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40larpalt.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "RyanWatkins_",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40RyanWatkins_.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "metaversejoji",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40metaversejoji.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "HsakaTrades",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40HsakaTrades.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "zachxbt",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40zachxbt.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "bloodgoodBTC",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40bloodgoodBTC.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "matthuang",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40matthuang.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "owen1v9",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40owen1v9.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "PrimordialAA",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40PrimordialAA.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "STACCoverflow",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40STACCoverflow.jpeg",
+        "category": "CRYPTO"
+    },
+    {
+        "handle": "0x_Kun",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%400x_Kun.jpeg",
+        "category": "CRYPTO"
+    }
+]
+
 const kolData = 
 [
     {
@@ -519,12 +744,12 @@ const kolData =
         pfp: "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40cobie.jpeg",
         category: "CRYPTO"
     },
-    {
-        handle: "Hustletiips",
-        aurarank: 1000,
-        pfp: "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40Hustletiips.jpeg",
-        category: "CRYPTO"
-    },
+    // {
+    //     handle: "Hustletiips",
+    //     aurarank: 1000,
+    //     pfp: "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40Hustletiips.jpeg",
+    //     category: "CRYPTO"
+    // },
     {
         handle: "based16z",
         aurarank: 1000,
@@ -535,11 +760,19 @@ const kolData =
 
 async function main() {
   console.log(`Start seeding ...`)
-  for (const u of kolData) {
-    const kol = await prisma.kOL.create({
-      data: u,
-    })
-    console.log(`Created kol with id: ${kol.id}`)
+  for (const u of kol2Data) {
+    const duplicate = await prisma.kOL.findFirst({
+        where: { handle: u.handle },
+      });
+
+    if (!duplicate) {
+        const kol = await prisma.kOL.create({
+            data: u,
+            })
+            console.log(`Created kol with id: ${kol.id}`)
+    } else {
+        console.log("Duplicate found - skipping")
+    }
   }
   console.log(`Seeding finished.`)
 }

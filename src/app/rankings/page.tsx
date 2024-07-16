@@ -32,13 +32,15 @@ const getKOLs = async () => {
             <thead>
                 <tr>
                     <th>Rank</th>
+                    <th>X Handle</th>
                     <th>PFP</th>
                     <th>aura Elo Rating</th>
                 </tr>
             </thead>
             <tbody id="eloTableBody">
-            {kols?.map(kol => (
+            {kols?.map((kol, index) => (
                 <tr key={kol.id}>
+                    <td>{index+1}</td>
                     <td>
                     <a className="x-color" href={`https://x.com/${kol?.handle}`} target="_blank">{kol.handle}</a></td>
                     <td><img src={kol.pfp} /></td>

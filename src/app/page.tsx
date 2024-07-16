@@ -7,7 +7,6 @@ export default function Home() {
   const [kolOne, setKolOne] = useState<KOL|undefined>();
   const [kolTwo, setKolTwo] = useState<KOL|undefined>();
   const [winner, setWinner] = useState<KOL|undefined>();
-  const [isVisible, setIsVisible] = useState(true);
 
   let streak = useRef(0);
 
@@ -100,7 +99,7 @@ export default function Home() {
           Were we let in for our <span className="aura-color">aura</span>? No. Will we be judged by it? Yes.
         </h3>
         <h2>Who has more aura? Click to Choose.</h2>
-        { streak.current < 9 ?
+
                 <div className="img-wrapper">
                 <div className="flex flex-col">
                   <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />
@@ -116,8 +115,6 @@ export default function Home() {
                   </p>
                 </div>        
               </div>
-        : <h1>win streak maxxed! shuffling auramashers...
-          </h1>}
 
 
         <ul className="house-list">

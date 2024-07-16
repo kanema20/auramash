@@ -73,7 +73,7 @@ export default function Home() {
         <h3>
           Were we let in for our <span className="aura-color">aura</span>? No. Will we be judged by it? Yes.
         </h3>
-        <h2>Who has more aura? Click to Choose. Winner Stays (sometimes).</h2>
+        <h2>Who has more aura? Click to Choose.</h2>
         <div className="img-wrapper">
           <div className="flex flex-col">
             <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />

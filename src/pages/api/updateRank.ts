@@ -37,6 +37,9 @@ export default async function handle(
     const winner = req.body.winner
     const loser = req.body.loser
 
+    console.log('winner before', winner.aurarank)
+    console.log('loser before', loser.aurarank)
+
     // const {Ra, Rb} = elo.calculateRating(winner.aurarank, loser.aurarank, 1);
     const { winnerRating, loserRating} = eloRating(winner.aurarank, loser.aurarank, 32, true);
 
@@ -69,12 +72,18 @@ export default async function handle(
             }
         }
     })
+
+    const winnerKOL = await prisma.kOL.findUnique({
+        where: {
+            id: winner.id
+        }
+    })
     console.log('winnerResult', winnerResult)
     console.log('loserResult', loserResult)
 
     const shuffled = kols.sort(() => 0.5 - Math.random());
-    let randomlySelected = shuffled.slice(0, 1);  
-    res.status(200).json({kolOne: winner, kolTwo: randomlySelected[0]})
+    let randomlySelected = shuffled.slice(0, 1);
+    res.status(200).json({kolOne: winnerKOL, kolTwo: randomlySelected[0]})
 
     // db.find({},  (err: any, docs: KOL[]) => {
     //     const shuffled = docs.sort(() => 0.5 - Math.random());

@@ -91,15 +91,15 @@ export default function Home() {
         </div>
 
         <ul className="house-list">
-          <li><a href="#">ADAMS</a></li>
-          <li><a href="#">CABOT</a></li>
-          <li><a href="#">DUNSTER</a></li>
-          <li><a href="#">ELIOT</a></li>
-          <li><a href="#">KIRKLAND</a></li>
-          <li><a href="#">LEVERETT</a></li>
-          <li><a href="#">LOWELL</a></li>
-          <li><a href="#">MATHER</a></li>
-          <li><a href="#">PFOHO</a></li>
+          <li><a href="#">MOVIES</a></li>
+          <li><a href="#">SPORTS</a></li>
+          <li><a href="#">GAMERS</a></li>
+          <li><a href="#">CRYPTO</a></li>
+          <li><a href="#">TIKTOK</a></li>
+          <li><a href="#">ACTORS</a></li>
+          <li><a href="#">ARTISTS</a></li>
+          <li><a href="#">ALBUMS</a></li>
+          <li><a href="#">COMING SOON...</a></li>
           <li><a href="#">RANDOM</a></li>
         </ul>
         

@@ -8,6 +8,21 @@ type Data = {
     kolTwo?: any
 }
 
+// elo rating formula in chess
+function probability(leftRating: number, rightRating: number){
+    return 1.0*1.0/(1+1.0*Math.pow(10, 1.0*(leftRating-rightRating)/400));
+  }
+  
+  function eloRating(winnerRating : number, loserRating : number, k: number, win: any){
+    let winnerProb = probability(loserRating, winnerRating); // left win probability
+    let loserProb = probability(winnerRating, loserRating); // right win probability
+
+    winnerRating = winnerRating + k * (1 - winnerProb); // add left rating
+    loserRating = loserRating + k * (0 - loserProb); // minus right rating
+
+    return { winnerRating, loserRating };
+  }
+
 export default async function handle(
     req: NextApiRequest,
     res: NextApiResponse<Data>
@@ -15,17 +30,18 @@ export default async function handle(
     if (req.method != 'POST') {
         res.status(405).json({message: 'POST method only'})
     }
-    const elo = new Elo();
+    // const elo = new Elo();
     // calculate elo score    
     console.log('body', req.body)
 
     const winner = req.body.winner
     const loser = req.body.loser
 
-    const {Ra, Rb} = elo.calculateRating(winner.aurarank, loser.aurarank, 1);
+    // const {Ra, Rb} = elo.calculateRating(winner.aurarank, loser.aurarank, 1);
+    const { winnerRating, loserRating} = eloRating(winner.aurarank, loser.aurarank, 32, true);
 
-    console.log('Ra', Ra)
-    console.log('Rb', Rb)
+    console.log('Ra', winnerRating)
+    console.log('Rb', loserRating)
 
     // update elo rankings
     const winnerResult = await prisma.kOL.update({
@@ -33,7 +49,7 @@ export default async function handle(
             id: winner.id,
         },
         data: {
-            aurarank: Ra
+            aurarank: winnerRating
         },
       })
 
@@ -42,7 +58,7 @@ export default async function handle(
             id: loser.id,
         },
         data: {
-            aurarank: Rb
+            aurarank: loserRating
         },
       })
 

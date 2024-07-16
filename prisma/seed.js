@@ -16,12 +16,6 @@ const kolData =
         category: "CRYPTO"
     },
     {
-        handle: "blknoiz06 ",
-        aurarank: 1000,
-        pfp: "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40blknoiz06 .jpeg",
-        category: "CRYPTO"
-    },
-    {
         handle: "IcedKnife",
         aurarank: 1000,
         pfp: "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40IcedKnife.jpeg",

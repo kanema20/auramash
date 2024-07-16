@@ -21,13 +21,13 @@ const getKOLs = async () => {
             getKOLs()
         }
     })
-    kols?.map(kol => {
-        console.log(kol)
-    })
+    // kols?.map(kol => {
+    //     console.log(kol)
+    // })
     return (
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    <>
-    <h3 className="sub-page-title">CT aura Elo Rating</h3>
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+        <h3 className="sub-page-title">CT aura Elo Rating</h3>
         <table>
             <thead>
                 <tr>
@@ -51,7 +51,7 @@ const getKOLs = async () => {
         <div className="back-footer">
             <button><a href="/">Back</a></button>
         </div>
-    </>
+    </div>
         
     // </main>
   );

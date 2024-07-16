@@ -1,11 +1,15 @@
 'use client'
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import KOL from "@/types/ct";
 
 export default function Home() {
   const [kolOne, setKolOne] = useState<KOL|undefined>();
   const [kolTwo, setKolTwo] = useState<KOL|undefined>();
+  const [winner, setWinner] = useState<KOL|undefined>();
+  const [isVisible, setIsVisible] = useState(true);
+
+  let streak = useRef(0);
 
   const getKOLs = async () => {
     const res = await fetch("/api/getKols", {
@@ -47,20 +51,42 @@ export default function Home() {
     if (kolOne?.id === kolTwo?.id) {
       getKOLs()
     }
+    if (streak.current == 10) {
+      streak.current = 0;
+      getKOLs()
+    }
   })
-  
+
   // left wins, right loses
   function clickLeft() {
+    if (winner?.id === kolOne?.id) {
+      streak.current++;
+    }
+    else {
+      setWinner(kolOne);
+      streak.current = 1;
+    }
     getWinner(kolOne!, kolTwo!);
   }
   
   // right wins, left loses
   function clickRight() { 
+    if (winner?.id === kolTwo?.id) {
+      streak.current++;
+    }
+    else {
+      setWinner(kolTwo);
+      streak.current = 1;
+    }
     getWinner(kolTwo!, kolOne!);
   }
 
   // console.log(kolOne);
   // console.log(kolTwo);
+  // console.log("winner: ", winner?.id);
+  console.log("win streak: ", streak.current);
+  // console.log("kol 1 id: ", kolOne?.id);
+  // console.log("kol 2 id: ", kolTwo?.id);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -74,21 +100,25 @@ export default function Home() {
           Were we let in for our <span className="aura-color">aura</span>? No. Will we be judged by it? Yes.
         </h3>
         <h2>Who has more aura? Click to Choose.</h2>
-        <div className="img-wrapper">
-          <div className="flex flex-col">
-            <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />
-            <p>
-            <a className="x-color" href={`https://x.com/${kolOne?.handle}`} target="_blank">{kolOne?.handle}</a>
-            </p>
-          </div>
-          <h3 className="or-char">OR</h3>
-          <div className="flex flex-col">
-            <Image src={kolTwo?.pfp!} width={400} height={400} alt="Right Image" id="rightImg" onClick={() => clickRight()} />
-            <p>
-              <a className="x-color" href={`https://x.com/${kolTwo?.handle}`} target="_blank">{kolTwo?.handle}</a>
-            </p>
-          </div>        
-        </div>
+        { streak.current < 9 ?
+                <div className="img-wrapper">
+                <div className="flex flex-col">
+                  <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />
+                  <p>
+                  <a className="x-color" href={`https://x.com/${kolOne?.handle}`} target="_blank">{kolOne?.handle}</a>
+                  </p>
+                </div>
+                <h3 className="or-char">OR</h3>
+                <div className="flex flex-col">
+                  <Image src={kolTwo?.pfp!} width={400} height={400} alt="Right Image" id="rightImg" onClick={() => clickRight()} />
+                  <p>
+                    <a className="x-color" href={`https://x.com/${kolTwo?.handle}`} target="_blank">{kolTwo?.handle}</a>
+                  </p>
+                </div>        
+              </div>
+        : <h1>win streak maxxed! shuffling auramashers...
+          </h1>}
+
 
         <ul className="house-list">
           <li><a href="#">MOVIES</a></li>

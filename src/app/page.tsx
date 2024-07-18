@@ -2,11 +2,13 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import KOL from "@/types/ct";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 
 export default function Home() {
   const [kolOne, setKolOne] = useState<KOL|undefined>();
   const [kolTwo, setKolTwo] = useState<KOL|undefined>();
   const [winner, setWinner] = useState<KOL|undefined>();
+  const queryClient = useQueryClient();
 
   let streak = useRef(0);
 
@@ -28,6 +30,7 @@ export default function Home() {
     return data;
   }
 
+
   const getWinner = async (winner: KOL, loser: KOL) => {
     const res = await fetch("/api/updateRank", {
       method: "POST",
@@ -42,6 +45,17 @@ export default function Home() {
     setKolTwo(data.kolTwo);
     return
   }
+
+  const winnerMutation = useMutation(
+    ({ winner, loser }: { winner: KOL, loser: KOL }) => getWinner(winner, loser),
+    {
+        onSuccess: () => {
+            // Invalidate and refetch queries that might be affected by the mutation
+            queryClient.invalidateQueries(['getWinner']);
+        },
+    }
+);
+    // console.log(data);
 
   useEffect(() => {
     if (!kolOne && !kolTwo) {
@@ -58,26 +72,30 @@ export default function Home() {
 
   // left wins, right loses
   function clickLeft() {
-    if (winner?.id === kolOne?.id) {
-      streak.current++;
-    }
-    else {
-      setWinner(kolOne);
-      streak.current = 1;
-    }
-    getWinner(kolOne!, kolTwo!);
+      if (winner?.id === kolOne?.id) {
+        streak.current++;
+      }
+      else {
+        setWinner(kolOne);
+        streak.current = 1;
+      }
+      winnerMutation.mutate({winner: kolOne!, loser: kolTwo!});
+      // getWinner(kolOne!, kolTwo!);
   }
   
   // right wins, left loses
   function clickRight() { 
-    if (winner?.id === kolTwo?.id) {
-      streak.current++;
-    }
-    else {
-      setWinner(kolTwo);
-      streak.current = 1;
-    }
-    getWinner(kolTwo!, kolOne!);
+    // if (!isLoading) {
+      if (winner?.id === kolTwo?.id) {
+        streak.current++;
+      }
+      else {
+        setWinner(kolTwo);
+        streak.current = 1;
+      }
+      // getWinner(kolTwo!, kolOne!);
+      winnerMutation.mutate({winner: kolTwo!, loser: kolOne!});
+    // }
   }
 
   // console.log(kolOne);
@@ -102,14 +120,26 @@ export default function Home() {
 
                 <div className="img-wrapper">
                 <div className="flex flex-col">
-                  <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()} />
+                  {winnerMutation.isLoading ? 
+                    <div className="mt-20">
+                      <p>Loading...</p>
+                    </div>
+                    :
+                    <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()}/>
+                  }
                   <p>
                   <a className="x-color" href={`https://x.com/${kolOne?.handle}`} target="_blank">{kolOne?.handle}</a>
                   </p>
                 </div>
                 <h3 className="or-char">OR</h3>
                 <div className="flex flex-col">
-                  <Image src={kolTwo?.pfp!} width={400} height={400} alt="Right Image" id="rightImg" onClick={() => clickRight()} />
+                {winnerMutation.isLoading ? 
+                  <div className="mt-20">
+                    <p>Loading...</p>
+                  </div>
+                   :
+                    <Image src={kolTwo?.pfp!} width={400} height={400} alt="Right Image" id="rightImg" onClick={() => clickRight()} />
+                }
                   <p>
                     <a className="x-color" href={`https://x.com/${kolTwo?.handle}`} target="_blank">{kolTwo?.handle}</a>
                   </p>

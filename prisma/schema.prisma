@@ -18,6 +18,7 @@ model KOL {
   handle String
   aurarank Float @default(1000)
   pfp String
+  wins Int @default(0)
   category Categories
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())

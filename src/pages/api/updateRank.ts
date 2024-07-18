@@ -52,7 +52,8 @@ export default async function handle(
             id: winner.id,
         },
         data: {
-            aurarank: winnerRating
+            aurarank: winnerRating,
+            wins: winner.wins + 1
         },
       })
 

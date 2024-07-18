@@ -43,7 +43,7 @@ const getKOLs = async () => {
                     <td>{index+1}</td>
                     <td>
                     <a className="x-color ct-name" href={`https://x.com/${kol?.handle}`} target="_blank">{kol.handle}</a></td>
-                    <td><Image className="pfp" src={kol.pfp} alt="kol pfp" width={50} height={50} />
+                    <td><Image className="pfp" src={kol.pfp} alt="kol pfp" width={400} height={400} />
                     </td>
                     <td>{parseFloat(kol.aurarank).toFixed(2)}</td>
                 </tr>

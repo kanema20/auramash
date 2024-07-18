@@ -65,6 +65,7 @@ export default function Home() {
       getKOLs()
     }
     if (streak.current == 10) {
+      console.log("win streak maxxed! randomizing KOLs")
       streak.current = 0;
       getKOLs()
     }
@@ -120,10 +121,11 @@ export default function Home() {
 
                 <div className="img-wrapper">
                 <div className="flex flex-col">
+
                   {winnerMutation.isLoading ? 
-                    <div className="mt-20">
+                    <div className="justify-center items-center">
                       <p>Loading...</p>
-                    </div>
+                    </div>                   
                     :
                     <Image src={kolOne?.pfp!} width={400} height={400} alt="Left Image" id="leftImg" onClick={() => clickLeft()}/>
                   }
@@ -134,7 +136,7 @@ export default function Home() {
                 <h3 className="or-char">OR</h3>
                 <div className="flex flex-col">
                 {winnerMutation.isLoading ? 
-                  <div className="mt-20">
+                  <div className="justify-center items-center">
                     <p>Loading...</p>
                   </div>
                    :

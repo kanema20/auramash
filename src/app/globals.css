@@ -181,4 +181,15 @@ img{
     color: rgb(0, 0, 255);
     text-decoration: underline;
   }
+  .pfp {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid black;
+  }
+  .ct-name {
+    font-size: 14px;
+  }
+  th {
+    font-size: 14px;
+  }
 }

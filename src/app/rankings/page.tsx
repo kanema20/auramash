@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 import KOL from "@/types/ct";
+import Image from "next/image";
 
 export default function Rankings() {
 const [kols, setKols] = useState<any[]>();
@@ -25,16 +26,15 @@ const getKOLs = async () => {
     //     console.log(kol)
     // })
     return (
-    // <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h3 className="sub-page-title">CT aura Elo Rating</h3>
+    <div className="flex min-h-screen min-w-screen flex-col items-center justify-between p-24">
+        <h3 className="sub-page-title">CT <span className="aura-color">aura</span> Elo Rating</h3>
         <table>
             <thead>
                 <tr>
                     <th>Rank</th>
                     <th>X Handle</th>
                     <th>PFP</th>
-                    <th>aura Elo Rating</th>
+                    <th>aura Rating</th>
                 </tr>
             </thead>
             <tbody id="eloTableBody">
@@ -42,9 +42,10 @@ const getKOLs = async () => {
                 <tr key={kol.id}>
                     <td>{index+1}</td>
                     <td>
-                    <a className="x-color" href={`https://x.com/${kol?.handle}`} target="_blank">{kol.handle}</a></td>
-                    <td><img src={kol.pfp} /></td>
-                    <td>{kol.aurarank}</td>
+                    <a className="x-color ct-name" href={`https://x.com/${kol?.handle}`} target="_blank">{kol.handle}</a></td>
+                    <td><Image className="pfp" src={kol.pfp} alt="kol pfp" width={50} height={50} />
+                    </td>
+                    <td>{parseFloat(kol.aurarank).toFixed(2)}</td>
                 </tr>
             ))}
             </tbody>

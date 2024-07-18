@@ -1,6 +1,15 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+const oneKol = [
+    {
+        "handle": "Melt_Dem",
+        "aurarank": 1000,
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40Melt_Dem.jpeg",
+        "category": "CRYPTO"
+    },
+]
+
 const kol2Data = [
     {
         "handle": "100trillionUSD",
@@ -760,7 +769,7 @@ const kolData =
 
 async function main() {
   console.log(`Start seeding ...`)
-  for (const u of kol2Data) {
+  for (const u of oneKol) {
     const duplicate = await prisma.kOL.findFirst({
         where: { handle: u.handle },
       });

@@ -25,16 +25,27 @@ export default function Home() {
     const shuffled = data.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 2);  
     // console.log(data);
-    let winAccum = 0;
-    data.forEach((kol: KOL) => {
-      winAccum = winAccum + kol.wins;
-    });
 
     // console.log(shuffled)
     setKolOne(selected[0]);
     setKolTwo(selected[1]);
-    setTotalWins(winAccum)
+    getTotalWins();
     return data;
+  }
+
+  const getTotalWins = async () => {
+    const res = await fetch("/api/getKols", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    let winAccum = 0;
+    data.forEach((kol: KOL) => {
+      winAccum = winAccum + kol.wins;
+      setTotalWins(winAccum)
+    });
   }
 
 
@@ -87,7 +98,13 @@ export default function Home() {
         setWinner(kolOne);
         streak.current = 1;
       }
-      winnerMutation.mutate({winner: kolOne!, loser: kolTwo!});
+      if (streak.current == 10) {
+        console.log("win streak maxxed! randomizing KOLs")
+        streak.current = 0;
+        getKOLs()
+      } else {
+        winnerMutation.mutate({winner: kolOne!, loser: kolTwo!});
+      }
       // getWinner(kolOne!, kolTwo!);
   }
   
@@ -101,8 +118,15 @@ export default function Home() {
         setWinner(kolTwo);
         streak.current = 1;
       }
+      if (streak.current == 10) {
+        console.log("win streak maxxed! randomizing KOLs")
+        streak.current = 0;
+        getKOLs()
+      }
       // getWinner(kolTwo!, kolOne!);
-      winnerMutation.mutate({winner: kolTwo!, loser: kolOne!});
+      else {
+        winnerMutation.mutate({winner: kolTwo!, loser: kolOne!});
+      }
     // }
   }
 
@@ -112,6 +136,7 @@ export default function Home() {
   console.log("win streak: ", streak.current);
   // console.log("kol 1 id: ", kolOne?.id);
   // console.log("kol 2 id: ", kolTwo?.id);
+  // getTotalWins();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

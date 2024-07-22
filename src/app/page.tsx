@@ -8,6 +8,7 @@ export default function Home() {
   const [kolOne, setKolOne] = useState<KOL|undefined>();
   const [kolTwo, setKolTwo] = useState<KOL|undefined>();
   const [winner, setWinner] = useState<KOL|undefined>();
+  const [totalWins, setTotalWins] = useState<number>(0);
   const queryClient = useQueryClient();
 
   let streak = useRef(0);
@@ -24,9 +25,15 @@ export default function Home() {
     const shuffled = data.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 2);  
     // console.log(data);
+    let winAccum = 0;
+    data.forEach((kol: KOL) => {
+      winAccum = winAccum + kol.wins;
+    });
+
     // console.log(shuffled)
     setKolOne(selected[0]);
     setKolTwo(selected[1]);
+    setTotalWins(winAccum)
     return data;
   }
 
@@ -147,8 +154,10 @@ export default function Home() {
                   </p>
                 </div>        
               </div>
-
-
+              <div className="stats">
+                <p>total mashes: {totalWins}</p>
+              </div>
+        
         <ul className="house-list">
           <li><a href="#">MOVIES</a></li>
           <li><a href="#">SPORTS</a></li>

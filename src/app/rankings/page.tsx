@@ -35,6 +35,7 @@ const getKOLs = async () => {
                     <th>X Handle</th>
                     <th>PFP</th>
                     <th>aura Rating</th>
+                    <th>Total Wins</th>
                 </tr>
             </thead>
             <tbody id="eloTableBody">
@@ -46,6 +47,7 @@ const getKOLs = async () => {
                     <td><Image className="pfp" src={kol.pfp} alt="kol pfp" width={400} height={400} />
                     </td>
                     <td>{parseFloat(kol.aurarank).toFixed(2)}</td>
+                    <td>{kol.wins}</td>
                 </tr>
             ))}
             </tbody>

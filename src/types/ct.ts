@@ -9,5 +9,5 @@ export enum Category {
 }
 
 export default class KOL {
-    constructor(public handle: string, public aurarank: number, public pfp: string, public category: Category, public id?: ObjectId) {}
+    constructor(public handle: string, public aurarank: number, public pfp: string, public wins: number, public category: Category, public id?: ObjectId) {}
 }

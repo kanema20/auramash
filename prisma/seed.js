@@ -3,9 +3,9 @@ const prisma = new PrismaClient()
 
 const oneKol = [
     {
-        "handle": "Melt_Dem",
+        "handle": "bangerzNFT",
         "aurarank": 1000,
-        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40Melt_Dem.jpeg",
+        "pfp": "https://raw.githubusercontent.com/miraisan1/auramashers/main/ct/%40bangerzNFT.jpeg",
         "category": "CRYPTO"
     },
 ]
@@ -784,7 +784,7 @@ async function main() {
     }
   }
   console.log(`Seeding finished.`)
-}
+}x
 
 main()
   .then(async () => {

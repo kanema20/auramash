@@ -90,10 +90,14 @@ th {
 }
 .img-wrapper{
   padding-top: 1.4rem;
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
   align-items: center;
   display: flex;
   justify-content: center;
+}
+.stats {
+  padding-bottom: 2rem;
+
 }
 img{
   width: 15rem;

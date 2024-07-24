@@ -137,6 +137,12 @@ img{
 .aura-color {
   color: rgb(0, 230, 0);
 }
+.negative-aura-color {
+  color: rgb(255, 0, 0);
+}
+.rank-update {
+  transform: translateY(-11rem);
+}
 .x-color {
   color: rgb(0, 0, 255);
   text-decoration: underline;

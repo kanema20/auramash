@@ -68,9 +68,7 @@ export default async function handle(
 
       const kols = await prisma.kOL.findMany({
         where: {
-            aurarank: {
-                gte: 1
-            }
+            category: "CRYPTO"
         }
     })
 

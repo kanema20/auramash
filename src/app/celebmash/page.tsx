@@ -221,11 +221,11 @@ export default function Home() {
                   }
                   <p>
                   <a className="x-color" href={`https://x.com/${kolOne?.handle}`} target="_blank">{kolOne?.handle}</a>
+                  <p className="rank-update negative-aura-color">-15 aura</p>
                   </p>
                 </div>
                 <h3 className="or-char">OR</h3>
                 <div className="flex flex-col"> 
-                {/* <p className="rank-update aura-color">+15 aura</p> */}
                 {winnerMutation.isLoading ? 
                   <div className="justify-center items-center">
                     <p>Loading...</p>
@@ -236,6 +236,8 @@ export default function Home() {
                   <p>
                     <a className="x-color" href={`https://x.com/${kolTwo?.handle}`} target="_blank">{kolTwo?.handle}</a>
                   </p>
+                  <p className="rank-update aura-color">+15 aura</p>
+
                 </div>        
               </div>
               <div className="stats">

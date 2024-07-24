@@ -12,13 +12,13 @@ datasource db {
   provider = "mongodb"
   url      = env("MONGODB_URI")
 }
-
 model KOL {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   handle String
   aurarank Float @default(1000)
   pfp String
   wins Int @default(0)
+  losses Int @default(0)
   category Categories
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())

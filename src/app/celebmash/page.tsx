@@ -7,14 +7,16 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 export default function Home() {
   const [kolOne, setKolOne] = useState<KOL|undefined>();
   const [kolTwo, setKolTwo] = useState<KOL|undefined>();
+  const [rankLeft, setRankLeft] = useState<KOL|undefined>();
+  const [rankRight, setRankRight] = useState<KOL|undefined>();
   const [winner, setWinner] = useState<KOL|undefined>();
   const [totalWins, setTotalWins] = useState<number>(0);
   const queryClient = useQueryClient();
 
   let streak = useRef(0);
 
-  const getKOLs = async () => {
-    const res = await fetch("/api/getKols", {
+  const getCelebs = async () => {
+    const res = await fetch("/api/getCelebs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -24,17 +26,16 @@ export default function Home() {
     // randomize KOL's
     const shuffled = data.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 2);  
-    // console.log(data);
 
-    // console.log(shuffled)
     setKolOne(selected[0]);
     setKolTwo(selected[1]);
     getTotalWins();
+    getRanks(selected[0], selected[1]);
     return data;
   }
 
   const getTotalWins = async () => {
-    const res = await fetch("/api/getKols", {
+    const res = await fetch("/api/getCelebs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -46,6 +47,20 @@ export default function Home() {
       winAccum = winAccum + kol.wins;
       setTotalWins(winAccum)
     });
+  }
+
+  const getRanks = async (left: KOL, right: KOL) => {
+    const res = await fetch("/api/getRanks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({left, right}),
+    });
+    const data = await res.json();
+    // console.log(data);
+    setRankLeft(data.left);
+    setRankRight(data.right);
   }
 
 
@@ -77,15 +92,15 @@ export default function Home() {
 
   useEffect(() => {
     if (!kolOne && !kolTwo) {
-      getKOLs()
+        getCelebs()
     }
     if (kolOne?.id === kolTwo?.id) {
-      getKOLs()
+        getCelebs()
     }
     if (streak.current == 10) {
-      console.log("win streak maxxed! randomizing KOLs")
+      console.log("win streak maxxed! randomizing CELEBs")
       streak.current = 0;
-      getKOLs()
+      getCelebs()
     }
   })
 
@@ -99,9 +114,9 @@ export default function Home() {
         streak.current = 1;
       }
       if (streak.current == 10) {
-        console.log("win streak maxxed! randomizing KOLs")
+        console.log("win streak maxxed! randomizing CELEBs")
         streak.current = 0;
-        getKOLs()
+        getCelebs()
       } else {
         winnerMutation.mutate({winner: kolOne!, loser: kolTwo!});
       }
@@ -119,9 +134,9 @@ export default function Home() {
         streak.current = 1;
       }
       if (streak.current == 10) {
-        console.log("win streak maxxed! randomizing KOLs")
+        console.log("win streak maxxed! randomizing CELEBs")
         streak.current = 0;
-        getKOLs()
+        getCelebs()
       }
       // getWinner(kolTwo!, kolOne!);
       else {
@@ -136,14 +151,16 @@ export default function Home() {
   console.log("win streak: ", streak.current);
   // console.log("kol 1 id: ", kolOne?.id);
   // console.log("kol 2 id: ", kolTwo?.id);
+  console.log("left rank: ", rankLeft);
   // getTotalWins();
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
   <div>
     <div className="wrapper">
       <div className="title">
-      <h1>FACEMASH</h1><small className="aura-color">[auramaxxing edition]</small>
+      <h1>CELEBMASH</h1><small className="aura-color">[auramaxxing edition]</small>
       </div>
       <div className="container">
         <h3>
@@ -180,25 +197,16 @@ export default function Home() {
                 </div>        
               </div>
               <div className="stats">
-                <p>total mashes: {totalWins}</p>
+                <p>total celeb mashes: {totalWins}</p>
               </div>
         
         <ul className="house-list">
-          <li><a href="#">MOVIES</a></li>
-          <li><a href="#">SPORTS</a></li>
-          <li><a href="#">GAMERS</a></li>
-          <li><a href="#">CRYPTO</a></li>
-          <li><a href="#">TIKTOK</a></li>
-          <li><a href="#">ACTORS</a></li>
-          <li><a href="#">ARTISTS</a></li>
-          <li><a href="#">ALBUMS</a></li>
-          <li><a href="#">COMING SOON...</a></li>
-          <li><a href="#">RANDOM</a></li>
+          <li><a href="#">POWERED BY $aura</a></li>
         </ul>
         
         <ul className="footer-list">
           <li><a href="/about">About</a></li>
-          <li><a href="/rankings" target="_blank">Rankings</a></li>
+          <li><a href="/celeb-rankings" target="_blank">Rankings</a></li>
         </ul>
       </div>
     </div>

@@ -8,6 +8,9 @@ export default async function handle(
     const kols = await prisma.kOL.findMany({
         orderBy: {
             aurarank: 'desc'
+        },
+        where: {
+            category: "CRYPTO"
         }
     })
     return res.json(kols)

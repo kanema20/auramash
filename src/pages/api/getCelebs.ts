@@ -7,7 +7,7 @@ export default async function handle(
   ) {
     const kols = await prisma.kOL.findMany({
         where: {
-            category: "CELEB"
+            category: "CELEB",
         }
     })
     return res.json(kols)

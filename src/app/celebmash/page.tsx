@@ -7,8 +7,8 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 export default function Home() {
   const [kolOne, setKolOne] = useState<KOL|undefined>();
   const [kolTwo, setKolTwo] = useState<KOL|undefined>();
-  const [rankLeft, setRankLeft] = useState<KOL|undefined>();
-  const [rankRight, setRankRight] = useState<KOL|undefined>();
+  const [rankLeft, setRankLeft] = useState<number|undefined>();
+  const [rankRight, setRankRight] = useState<number|undefined>();
   const [winner, setWinner] = useState<KOL|undefined>();
   const [totalWins, setTotalWins] = useState<number>(0);
   const queryClient = useQueryClient();
@@ -23,6 +23,7 @@ export default function Home() {
       },
     });
     const data = await res.json();
+    console.log(data);
     // randomize KOL's
     const shuffled = data.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 2);  
@@ -32,6 +33,30 @@ export default function Home() {
     getTotalWins();
     getRanks(selected[0], selected[1]);
     return data;
+  }
+
+  function probability(leftRating: number, rightRating: number){
+    return 1.0*1.0/(1+1.0*Math.pow(10, 1.0*(leftRating-rightRating)/400));
+  }
+  
+  function eloRating(winnerRating : number, loserRating : number, k: number, win: any){
+    let winnerProb = probability(loserRating, winnerRating); // left win probability
+    let loserProb = probability(winnerRating, loserRating); // right win probability
+
+    winnerRating = winnerRating + k * (1 - winnerProb); // add left rating
+    loserRating = loserRating + k * (0 - loserProb); // minus right rating
+
+    return { winnerRating, loserRating };
+  }
+
+  const calcRankUpdates = async (left: KOL, right: KOL) => {
+    // if left wins
+    // if () {
+    //   const { winnerRating, loserRating} = eloRating(left.aurarank, right.aurarank, 32, true);
+    // } else {
+    //   // if right wins
+    //   const { winnerRating, loserRating} = eloRating(right.aurarank, left.aurarank, 32, true);
+    // }
   }
 
   const getTotalWins = async () => {
@@ -65,7 +90,7 @@ export default function Home() {
 
 
   const getWinner = async (winner: KOL, loser: KOL) => {
-    const res = await fetch("/api/updateRank", {
+    const res = await fetch("/api/updateCelebRank", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,6 +101,8 @@ export default function Home() {
     // console.log(data);
     setKolOne(data.kolOne);
     setKolTwo(data.kolTwo);
+    setRankLeft(data.kolOne.aurarank);
+    setRankRight(data.kolTwo.aurarank);
     return
   }
 
@@ -106,6 +133,11 @@ export default function Home() {
 
   // left wins, right loses
   function clickLeft() {
+    const { winnerRating, loserRating} = eloRating(kolOne?.aurarank!, kolTwo?.aurarank!, 32, true);
+    console.log("left rank after: ", winnerRating);
+    console.log("right rank after: ", loserRating);
+    console.log("diff winner: ", winnerRating - rankLeft!);
+    console.log("diff loser: ", loserRating - rankRight!);
       if (winner?.id === kolOne?.id) {
         streak.current++;
       }
@@ -125,7 +157,11 @@ export default function Home() {
   
   // right wins, left loses
   function clickRight() { 
-    // if (!isLoading) {
+    const { winnerRating, loserRating} = eloRating(kolTwo?.aurarank!, kolOne?.aurarank!, 32, true);
+    console.log("right rank after: ", winnerRating);
+    console.log("left rank after: ", loserRating);
+    console.log("diff winner: ", winnerRating - rankRight!);
+    console.log("diff loser: ", loserRating - rankLeft!);
       if (winner?.id === kolTwo?.id) {
         streak.current++;
       }
@@ -145,13 +181,18 @@ export default function Home() {
     // }
   }
 
+  function calculateDiff() {
+
+  }
+
   // console.log(kolOne);
   // console.log(kolTwo);
   // console.log("winner: ", winner?.id);
   console.log("win streak: ", streak.current);
   // console.log("kol 1 id: ", kolOne?.id);
   // console.log("kol 2 id: ", kolTwo?.id);
-  console.log("left rank: ", rankLeft);
+  console.log("left rank before: ", rankLeft);
+  console.log("right rank before: ", rankRight);
   // getTotalWins();
 
 
@@ -183,7 +224,8 @@ export default function Home() {
                   </p>
                 </div>
                 <h3 className="or-char">OR</h3>
-                <div className="flex flex-col">
+                <div className="flex flex-col"> 
+                {/* <p className="rank-update aura-color">+15 aura</p> */}
                 {winnerMutation.isLoading ? 
                   <div className="justify-center items-center">
                     <p>Loading...</p>

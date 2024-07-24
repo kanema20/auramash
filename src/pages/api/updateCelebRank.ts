@@ -34,8 +34,8 @@ export default async function handle(
     // calculate elo score    
     console.log('body', req.body)
 
-    const winner = req.body.left
-    const loser = req.body.right
+    const winner = req.body.winner
+    const loser = req.body.loser
 
     console.log('winner before', winner.aurarank)
     console.log('loser before', loser.aurarank)
@@ -68,9 +68,7 @@ export default async function handle(
 
       const kols = await prisma.kOL.findMany({
         where: {
-            aurarank: {
-                gte: 1
-            }
+            category: "CELEB",
         }
     })
 
@@ -86,4 +84,8 @@ export default async function handle(
     let randomlySelected = shuffled.slice(0, 1);
     res.status(200).json({kolOne: winnerKOL, kolTwo: randomlySelected[0]})
 
+    // db.find({},  (err: any, docs: KOL[]) => {
+    //     const shuffled = docs.sort(() => 0.5 - Math.random());
+    //     let selected = shuffled.slice(0, 2);
+    // })
 }

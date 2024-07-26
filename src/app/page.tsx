@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import KOL from "@/types/ct";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { gsap } from 'gsap';
+import { cult1 } from "./utils/assets";
 
 export default function Home() {
   const textRef = useRef<HTMLDivElement>(null);
@@ -70,7 +71,6 @@ export default function Home() {
     });
   }
 
-
   const getRanks = async (left: KOL, right: KOL) => {
     const res = await fetch("/api/getRanks", {
       method: "POST",
@@ -84,7 +84,6 @@ export default function Home() {
     setRankLeft(data.left);
     setRankRight(data.right);
   }
-
 
   const getWinner = async (winner: KOL, loser: KOL) => {
     const res = await fetch("/api/updateRank", {
@@ -105,15 +104,14 @@ export default function Home() {
 
   const winnerMutation = useMutation(
     ({ winner, loser }: { winner: KOL, loser: KOL }) => getWinner(winner, loser),
-    {
-        onSuccess: () => {
-            // Invalidate and refetch queries that might be affected by the mutation
-            queryClient.invalidateQueries(['getWinner']);
-        },
-    }
-);
+      {
+          onSuccess: () => {
+              // Invalidate and refetch queries that might be affected by the mutation
+              queryClient.invalidateQueries(['getWinner']);
+          },
+      }
+    );
     // console.log(data);
-
   useEffect(() => {
     if (!kolOne && !kolTwo) {
       getKOLs()
@@ -128,10 +126,16 @@ export default function Home() {
     }
   })
   useEffect(() => {
-    if (textRef.current && textRef2.current) {
-      gsap.set([textRef.current, textRef2.current], { opacity: 0, y: -185 });
-      // gsap.set(textRef.current, { y: -175 });
-      // gsap.set(textRef2.current, { y: -175 });
+    if (textRef.current) {
+      gsap.set(textRef.current, { opacity: 0, y: -185 });
+      gsap.set(textRef.current, { y: -185 });
+
+    } 
+    
+    if (textRef2.current) {
+      // gsap.set([textRef.current, textRef2.current], { opacity: 0, y: -185 });
+      gsap.set(textRef2.current, { opacity: 0, y: -185 });
+      gsap.set(textRef2.current, { y: -185 });
     }
   }, [getKOLs]);
 
@@ -269,6 +273,15 @@ export default function Home() {
           <li><a href="/about">About</a></li>
           <li><a href="/rankings" target="_blank">Rankings</a></li>
         </ul>
+      </div>
+      <div className="aura-image">
+        <Image
+            className="auracat"
+            src={cult1}
+            alt="image"
+            height={100}
+            width={100}
+          />
       </div>
     </div>
   </div>

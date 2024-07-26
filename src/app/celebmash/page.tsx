@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { gsap } from 'gsap';
 import KOL from "@/types/ct";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import { cult1 } from "../utils/assets";
 
 export default function Home() {
   const textRef = useRef<HTMLDivElement>(null);
@@ -126,11 +127,11 @@ export default function Home() {
   })
 
   useEffect(() => {
-    if (textRef.current && textRef2.current) {
+    // if (textRef.current && textRef2.current) {
       gsap.set([textRef.current, textRef2.current], { opacity: 0, y: -185 });
-      // gsap.set(textRef.current, { y: -175 });
-      // gsap.set(textRef2.current, { y: -175 });
-    }
+      gsap.set(textRef.current, { y: -185 });
+      gsap.set(textRef2.current, { y: -185 });
+    // }
   }, [getCelebs]);
 
   // left wins, right loses
@@ -188,12 +189,14 @@ export default function Home() {
   }
 
   const moveTextUp = () => {
-    gsap.to([textRef.current, textRef2.current], { duration: 0.5, opacity: 1, ease: "power2.out" });
     if (textRef.current) {
       gsap.to(textRef.current, { duration: 1, y: -225, ease: "power2.out" });
+      gsap.to(textRef.current, { duration: 0.5, opacity: 1, ease: "power2.out" });
+
     }
     if (textRef2.current) {
       gsap.to(textRef2.current, { duration: 1, y: -235, ease: "power2.out" });
+      gsap.to(textRef2.current, { duration: 0.5, opacity: 1, ease: "power2.out" });
     }
   };
 
@@ -269,6 +272,13 @@ export default function Home() {
           <li><a href="/celeb-rankings" target="_blank">Rankings</a></li>
         </ul>
       </div>
+      <Image
+          className="auracat"
+          src={cult1}
+          alt="image"
+          height={100}
+          width={100}
+        />
     </div>
   </div>
     </main>

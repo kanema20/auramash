@@ -64,6 +64,12 @@ th {
 .center-all {
   text-align: center;
 }
+.auracat {
+  justify-content: center;
+  text-align: center;
+  width: 15rem;
+  border: none;
+}
 .wrapper {
   width: 97.5%;
   height: 70%;
@@ -202,4 +208,10 @@ img{
   th {
     font-size: 14px;
   }
+  .auracat {
+    justify-content: center;
+    text-align: center;
+    width: 10rem;
+    border: none;
+  }  
 }

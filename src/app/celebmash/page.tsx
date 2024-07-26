@@ -53,16 +53,6 @@ export default function Home() {
     return { winnerRating, loserRating };
   }
 
-  const calcRankUpdates = async (left: KOL, right: KOL) => {
-    // if left wins
-    // if () {
-    //   const { winnerRating, loserRating} = eloRating(left.aurarank, right.aurarank, 32, true);
-    // } else {
-    //   // if right wins
-    //   const { winnerRating, loserRating} = eloRating(right.aurarank, left.aurarank, 32, true);
-    // }
-  }
-
   const getTotalWins = async () => {
     const res = await fetch("/api/getCelebs", {
       method: "GET",
@@ -146,8 +136,8 @@ export default function Home() {
   // left wins, right loses
   function clickLeft() {
     const { winnerRating, loserRating} = eloRating(kolOne?.aurarank!, kolTwo?.aurarank!, 32, true);
-    console.log("left rank after: ", winnerRating);
-    console.log("right rank after: ", loserRating);
+    // console.log("left rank after: ", winnerRating);
+    // console.log("right rank after: ", loserRating);
     setDiff(Math.abs((winnerRating - rankLeft!)));
     // console.log("diff winner: ", winnerRating - rankLeft!);
     // console.log("diff loser: ", loserRating - rankRight!);
@@ -172,8 +162,8 @@ export default function Home() {
   // right wins, left loses
   function clickRight() { 
     const { winnerRating, loserRating} = eloRating(kolTwo?.aurarank!, kolOne?.aurarank!, 32, true);
-    console.log("right rank after: ", winnerRating);
-    console.log("left rank after: ", loserRating);
+    // console.log("right rank after: ", winnerRating);
+    // console.log("left rank after: ", loserRating);
     setDiff(Math.abs(winnerRating - rankRight!));
     // console.log("diff winner: ", winnerRating - rankRight!);
     // console.log("diff loser: ", loserRating - rankLeft!);
@@ -271,7 +261,7 @@ export default function Home() {
               </div>
         
         <ul className="house-list">
-          <li><a href="#">POWERED BY $aura</a></li>
+          <li><a href="#">POWERED BY <a href="https://dexscreener.com/solana/9vix1vducteoc2wertsp2tudxxpwaf69aeet8enpjpsn?maker=AJUUQHndVntX3QwLpqB8ByfaZbAVS3pjuKjWkEqHSnPj" target="_blank">$aura</a> on Solana</a></li>
         </ul>
         
         <ul className="footer-list">

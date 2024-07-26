@@ -259,16 +259,15 @@ export default function Home() {
                 <p>total mashes: {totalWins}</p>
               </div>
         
-        <ul className="house-list">
-          <li><a href="#">POWERED BY <a href="https://dexscreener.com/solana/9vix1vducteoc2wertsp2tudxxpwaf69aeet8enpjpsn?maker=AJUUQHndVntX3QwLpqB8ByfaZbAVS3pjuKjWkEqHSnPj" target="_blank">$aura</a> on Solana</a></li>
-
-        </ul>
         <ul className="footer-list">
           <li><a href="/about">About</a></li>
           <li><a href="/rankings" target="_blank">Rankings</a></li>
         </ul>
         <ul className="house-list">
           <li><a href="/celebmash">PLAY CELEB VERSION</a></li>
+        </ul>
+        <ul className="house-list">
+          <li><a href="#">POWERED BY <a href="https://dexscreener.com/solana/9vix1vducteoc2wertsp2tudxxpwaf69aeet8enpjpsn?maker=AJUUQHndVntX3QwLpqB8ByfaZbAVS3pjuKjWkEqHSnPj" target="_blank">$aura</a> on Solana</a></li>
         </ul>
       </div>
       <div className="aura-image">

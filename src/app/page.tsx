@@ -129,9 +129,7 @@ export default function Home() {
     if (textRef.current) {
       gsap.set(textRef.current, { opacity: 0, y: -185 });
       gsap.set(textRef.current, { y: -185 });
-
-    } 
-    
+    }
     if (textRef2.current) {
       // gsap.set([textRef.current, textRef2.current], { opacity: 0, y: -185 });
       gsap.set(textRef2.current, { opacity: 0, y: -185 });
@@ -265,13 +263,12 @@ export default function Home() {
           <li><a href="#">POWERED BY <a href="https://dexscreener.com/solana/9vix1vducteoc2wertsp2tudxxpwaf69aeet8enpjpsn?maker=AJUUQHndVntX3QwLpqB8ByfaZbAVS3pjuKjWkEqHSnPj" target="_blank">$aura</a> on Solana</a></li>
 
         </ul>
-        <ul className="house-list">
-          <li><a href="/celebmash">PLAY CELEB VERSION</a></li>
-        </ul>
-        
         <ul className="footer-list">
           <li><a href="/about">About</a></li>
           <li><a href="/rankings" target="_blank">Rankings</a></li>
+        </ul>
+        <ul className="house-list">
+          <li><a href="/celebmash">PLAY CELEB VERSION</a></li>
         </ul>
       </div>
       <div className="aura-image">

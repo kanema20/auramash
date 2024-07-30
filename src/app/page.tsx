@@ -190,12 +190,13 @@ export default function Home() {
   }
 
   const moveTextUp = () => {
-    gsap.to([textRef.current, textRef2.current], { duration: 0.5, opacity: 1, ease: "power2.out" });
     if (textRef.current) {
-      gsap.to(textRef.current, { duration: 1, y: -225, ease: "power2.out" });
+      gsap.to(textRef.current, { duration: 1.25, y: -225, ease: "power2.out" });
+      gsap.to(textRef.current, { duration: 0.7, opacity: 1, ease: "power2.out" });
     }
     if (textRef2.current) {
-      gsap.to(textRef2.current, { duration: 1, y: -235, ease: "power2.out" });
+      gsap.to(textRef2.current, { duration: 1.25, y: -235, ease: "power2.out" });
+      gsap.to(textRef2.current, { duration: 0.7, opacity: 1, ease: "power2.out"});
     }
   };
 

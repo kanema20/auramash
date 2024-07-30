@@ -193,6 +193,22 @@ img{
   .aura-color {
     color: rgb(0, 230, 0);
     }
+  
+  .aurified {
+    color: rgba(0,230,0,1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow:
+    0 0 1px #0f0,
+    0 0 1px #0f0,
+    0 0 1px #0f0,
+    0 0 3px #fff,
+    0 0 3px #fff,
+    0 0 30px #fff,
+    0 0 17px #fff,
+    0 0 20px #fff;
+  }
+
   .x-color {
     color: rgb(0, 0, 255);
     text-decoration: underline;

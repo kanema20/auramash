@@ -127,11 +127,14 @@ export default function Home() {
   })
 
   useEffect(() => {
-    // if (textRef.current && textRef2.current) {
-      gsap.set([textRef.current, textRef2.current], { opacity: 0, y: -185 });
-      gsap.set(textRef.current, { y: -185 });
-      gsap.set(textRef2.current, { y: -185 });
-    // }
+    if (textRef.current) {
+      gsap.set(textRef.current, { opacity: 0, y: -185 });
+      gsap.set(textRef.current, {  y: -185 });
+    }
+    if (textRef2.current) {
+      gsap.set(textRef2.current, { opacity: 0, y: -185 });
+      // gsap.set(textRef2.current, {  y: -185 });
+    }
   }, [getCelebs]);
 
   // left wins, right loses
@@ -190,13 +193,13 @@ export default function Home() {
 
   const moveTextUp = () => {
     if (textRef.current) {
-      gsap.to(textRef.current, { duration: 1, y: -225, ease: "power2.out" });
-      gsap.to(textRef.current, { duration: 0.5, opacity: 1, ease: "power2.out" });
+      gsap.to(textRef.current, { duration: 1.25, y: -225, ease: "power2.out" });
+      gsap.to(textRef.current, { duration: 0.7, opacity: 1, ease: "power2.out" });
 
     }
     if (textRef2.current) {
-      gsap.to(textRef2.current, { duration: 1, y: -235, ease: "power2.out" });
-      gsap.to(textRef2.current, { duration: 0.5, opacity: 1, ease: "power2.out" });
+      gsap.to(textRef2.current, { duration: 1.25, y: -235, ease: "power2.out" });
+      gsap.to(textRef2.current, { duration: 0.7, opacity: 1, ease: "power2.out" });
     }
   };
 

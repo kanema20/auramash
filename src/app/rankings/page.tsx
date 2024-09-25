@@ -2,17 +2,33 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function Rankings() {
-  const [kols, setKols] = useState<any[]>();
+interface KOL {
+  id: string;
+  pfp: string;
+  handle: string;
+  aurarank: number;
+  wins: number;
+}
+
+interface RankingsProps {
+  endpoint?: string;
+  type?: string;
+}
+
+export default function Rankings({
+  endpoint = "/api/getSortedKols",
+  type = "kol",
+}: RankingsProps) {
+  const [kols, setKols] = useState<KOL[] | null>(null);
 
   const getKOLs = async () => {
-    const res = await fetch("/api/getSortedKols", {
+    const res = await fetch(endpoint, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const data = await res.json();
+    const data: KOL[] = await res.json();
     setKols(data);
     return data;
   };
@@ -29,7 +45,8 @@ export default function Rankings() {
   return (
     <div className="flex flex-col items-center justify-center h-screen max-w-[2000px] w-full p-6">
       <h3 className="text-left uppercase w-full text-[32px] lg:text-[64px] my-16 ml-8">
-        CT <span className="text-green-500">aura</span> Elo Rating
+        {type == "kol" ? "CT " : "Celebs "}
+        <span className="text-green-500">aura</span> Elo Rating
       </h3>
 
       {/* Container for table with overflow handling */}
@@ -59,7 +76,7 @@ export default function Rankings() {
                     <Image
                       src={kol.pfp}
                       alt="kol pfp"
-                      className=" object-cover"
+                      className="object-cover"
                       fill={true}
                       sizes="200px"
                     />
@@ -75,7 +92,7 @@ export default function Rankings() {
                     @{kol.handle}
                   </a>
                 </td>
-                <td className="p-4">{parseFloat(kol.aurarank).toFixed(2)}</td>
+                <td className="p-4">{parseFloat(kol.aurarank.toFixed(2))}</td>
                 <td className="p-4">{kol.wins}</td>
               </tr>
             ))}

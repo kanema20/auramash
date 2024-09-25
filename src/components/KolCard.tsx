@@ -30,12 +30,7 @@ export const KOLCard: React.FC<KOLCardProps> = ({
   };
 
   return (
-    <motion.div
-      className="flex flex-col items-center w-full"
-      initial={{ opacity: 0, y: 5 }} // Initial state
-      animate={{ opacity: 1, y: isWinner ? -4 : 0 }} // Animate up if winner
-      transition={{ duration: 1.25, ease: "easeOut" }}
-    >
+    <motion.div className="flex flex-col items-center w-full">
       {kol ? (
         <div className="relative max-w-96 aspect-square w-full transition-all rounded-2xl group">
           {/* Image */}

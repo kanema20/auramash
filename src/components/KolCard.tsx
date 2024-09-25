@@ -37,25 +37,27 @@ export const KOLCard: React.FC<KOLCardProps> = ({
       transition={{ duration: 1.25, ease: "easeOut" }}
     >
       {kol ? (
-        <div
-          className={`max-w-96 aspect-square w-full relative transition-all rounded-2xl border-4 border-bg-100 hover:border-brand-primary overflow-hidden`}
-        >
-          <Image
-            src={kol.pfp!}
-            fill={true}
-            sizes="400px"
-            alt="KOL Image"
-            className="object-cover cursor-pointer duration-300 transition-all hover:scale-105"
-            onClick={handleClick}
-          />
+        <div className="relative max-w-96 aspect-square w-full transition-all rounded-2xl group">
+          {/* Image */}
+          {/* Rotated border */}
+          <div className="absolute inset-0 border-[12px] overflow-hidden border-brand-primary rounded-2xl transform rotate-45 scale-75 ">
+            <Image
+              src={kol.pfp!}
+              fill={true}
+              sizes="400px"
+              alt="KOL Image"
+              className="object-cover scale-[1.4] -rotate-45 cursor-pointer duration-300 transition-all hover:scale-[1.5]"
+              onClick={handleClick}
+            />
+          </div>
         </div>
       ) : (
         <div className="flex justify-center items-center">Loading...</div>
       )}
 
-      <p>
+      <p className="mt-4">
         <a
-          className="underline text-lg"
+          className="underline text-lg "
           href={`https://x.com/${kol?.handle}`}
           target="_blank"
         >

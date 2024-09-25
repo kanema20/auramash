@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
 import { useState, useEffect, useRef } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import KOL from "@/types/ct";
@@ -134,7 +135,8 @@ export default function Home() {
 
   return (
     <main>
-      <section className="flex min-h-screen text-white font-extrabold bg-gradient-radial from-bg-100 to-70% to-bg-200 flex-col items-center justify-between p-6">
+      <Navbar />
+      <section className="flex pt-24 min-h-screen text-white font-extrabold bg-gradient-radial from-bg-100 to-70% to-bg-200 flex-col items-center justify-between p-6">
         <Header />
 
         <h2 className="text-2xl text-center tracking-wide py-4">

@@ -8,27 +8,15 @@ export const Footer = ({ totalWins }) => (
       <p className={""}>{totalWins}</p>
     </div>
 
-    <ul className="list-none space-x-2 inline-flex">
-      <li>
-        <a href="/about" className="font-semibold">
-          About
-        </a>
-      </li>
-      <li>
-        <a href="/rankings" target="_blank" className="font-semibold">
-          Rankings
-        </a>
-      </li>
-    </ul>
-
-    <ul className="list-none space-x-2 inline-flex pt-4">
-      <li>
-        <a href="/celebmash" className="font-semibold text-blue-500">
-          PLAY CELEB VERSION
-        </a>
-      </li>
-    </ul>
-
+    <div className="pt-8">
+      <Image
+        src={cult1}
+        alt="image"
+        height={100}
+        width={100}
+        className="mx-auto"
+      />
+    </div>
     <ul className="list-none space-x-2 inline-flex pt-4">
       <li>
         <a
@@ -40,15 +28,5 @@ export const Footer = ({ totalWins }) => (
         </a>
       </li>
     </ul>
-
-    <div className="pt-8">
-      <Image
-        src={cult1}
-        alt="image"
-        height={100}
-        width={100}
-        className="mx-auto"
-      />
-    </div>
   </div>
 );

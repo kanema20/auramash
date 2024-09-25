@@ -9,9 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-radial":
+          "radial-gradient(circle at top, var(--tw-gradient-stops))",
+        "gradient-radial-b":
+          "radial-gradient(circle at bottom, var(--tw-gradient-stops))",
+      },
+    },
+    colors: {
+      ...require("tailwindcss/colors"),
+      "brand-primary": "#52ff00",
+      bg: {
+        100: "#5C6083",
+        200: "#0D0E13",
       },
     },
   },

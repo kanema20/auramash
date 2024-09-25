@@ -1,63 +1,92 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
-import KOL from "@/types/ct";
 import Image from "next/image";
 
 export default function Rankings() {
-const [kols, setKols] = useState<any[]>();
-const getKOLs = async () => {
+  const [kols, setKols] = useState<any[]>();
+
+  const getKOLs = async () => {
     const res = await fetch("/api/getSortedKols", {
-        method: "GET",
-        headers: {
+      method: "GET",
+      headers: {
         "Content-Type": "application/json",
-        },
+      },
     });
     const data = await res.json();
-    // console.log(data);
     setKols(data);
     return data;
-    }
-    useEffect(() => {
-        if (!kols) {
-            getKOLs()
-        }
-    })
-    // kols?.map(kol => {
-    //     console.log(kol)
-    // })
-    return (
-    <div className="flex min-h-screen min-w-screen flex-col items-center justify-between p-24">
-        <h3 className="sub-page-title">CT <span className="aura-color">aura</span> Elo Rating</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>X Handle</th>
-                    <th>PFP</th>
-                    <th>aura Rating</th>
-                    <th>Total Wins</th>
-                </tr>
-            </thead>
-            <tbody id="eloTableBody">
-            {kols?.map((kol, index) => (
-                <tr key={kol.id}>
-                    <td>{index+1}</td>
-                    <td>
-                    <a className="x-color ct-name" href={`https://x.com/${kol?.handle}`} target="_blank">{kol.handle}</a></td>
-                    <td><Image className="pfp" src={kol.pfp} alt="kol pfp" width={400} height={400} />
-                    </td>
-                    <td>{parseFloat(kol.aurarank).toFixed(2)}</td>
-                    <td>{kol.wins}</td>
-                </tr>
-            ))}
-            </tbody>
-        </table>
+  };
 
-        <div className="back-footer">
-            <button><a href="/">Back</a></button>
-        </div>
+  useEffect(() => {
+    if (!kols) {
+      getKOLs();
+    }
+  }, [kols]);
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen w-full p-6">
+      <h3 className="text-lg font-bold py-4">
+        CT <span className="text-green-500">aura</span> Elo Rating
+      </h3>
+
+      {/* Container for table with overflow handling */}
+      <div className="w-full max-w-5xl overflow-auto">
+        <table className="relative w-full table-auto border-collapse text-center text-sm min-w-[800px]">
+          <thead className="sticky top-0 z-20 bg-gradient-to-r from-bg-100 via-black to-bg-200 outline outline-1 outline-slate-600">
+            <tr>
+              <th className="border-b border-slate-600 p-4 pb-3 pl-8 pt-0 text-center font-medium text-slate-200">
+                Rank
+              </th>
+              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
+                X Handle
+              </th>
+              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
+                PFP
+              </th>
+              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
+                Aura Rating
+              </th>
+              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
+                Total Wins
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {kols?.map((kol, index) => (
+              <tr key={kol.id} className="border-b border-slate-700">
+                <td className="p-4 pl-8">{index + 1}</td>
+                <td className="p-4">
+                  <a
+                    className="text-blue-500 underline"
+                    href={`https://x.com/${kol.handle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {kol.handle}
+                  </a>
+                </td>
+                <td className="p-4">
+                  <Image
+                    className="rounded-full"
+                    src={kol.pfp}
+                    alt="kol pfp"
+                    width={50}
+                    height={50}
+                  />
+                </td>
+                <td className="p-4">{parseFloat(kol.aurarank).toFixed(2)}</td>
+                <td className="p-4">{kol.wins}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="py-8">
+        <button className="bg-red-600 text-white py-2 px-4 rounded">
+          <a href="/">Back</a>
+        </button>
+      </div>
     </div>
-        
-    // </main>
   );
 }

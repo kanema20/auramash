@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rajdhani } from "next/font/google";
 import "./globals.css";
-import { Providers } from './providers'
-import { Analytics } from "@vercel/analytics/react"
+import { Providers } from "./providers";
+import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] });
+const rajdhani = Rajdhani({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["devanagari"], // You can add subsets like 'latin', 'latin-ext', etc. as needed
+});
 
 export const metadata: Metadata = {
   title: "FACEMASH [auramaxxing edition]",
@@ -19,8 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={inter.className}>{children}
-        <Analytics />
+        <body className={rajdhani.className}>
+          {children}
+          <Analytics />
         </body>
       </Providers>
     </html>

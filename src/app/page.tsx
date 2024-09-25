@@ -141,7 +141,7 @@ export default function Home() {
           Who has more aura? Click to Choose.
         </h2>
 
-        <div className="flex min-h-[456px] justify-center items-center py-6">
+        <div className="flex h-[45vw] max-h-[460px] max-w-5xl justify-center items-center py-6 mx-12 w-full">
           <KOLCard
             kol={kolOne}
             handleClick={handleLeftClick}
@@ -149,7 +149,7 @@ export default function Home() {
             winner={winner}
           />
 
-          <h3 className="px-6 text-3xl">OR</h3>
+          <h3 className="text-[48px] lg:text-[72px] px-6">OR</h3>
 
           <KOLCard
             kol={kolTwo}

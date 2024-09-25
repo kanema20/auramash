@@ -23,56 +23,57 @@ export default function Rankings() {
     }
   }, [kols]);
 
+  // Define the headers for reuse
+  const headers = ["Rank", "PFP", "X Handle", "Aura Rating", "Total Wins"];
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-full p-6">
-      <h3 className="text-lg font-bold py-4">
+    <div className="flex flex-col items-center justify-center h-screen max-w-[2000px] w-full p-6">
+      <h3 className="text-left uppercase w-full text-[32px] lg:text-[64px] my-16 ml-8">
         CT <span className="text-green-500">aura</span> Elo Rating
       </h3>
 
       {/* Container for table with overflow handling */}
-      <div className="w-full max-w-5xl overflow-auto">
-        <table className="relative w-full table-auto border-collapse text-center text-sm min-w-[800px]">
-          <thead className="sticky top-0 z-20 bg-gradient-to-r from-bg-100 via-black to-bg-200 outline outline-1 outline-slate-600">
+      <div className="w-full overflow-auto">
+        <table className="relative bg-black/40 backdrop-blur-md rounded-3xl w-full table-auto border-collapse text-center lg:text-2xl min-w-[800px]">
+          <thead className="sticky top-0 z-20 bg-gradient-to-r from-bg-200 via-bg-200 to-bg-200 ">
             <tr>
-              <th className="border-b border-slate-600 p-4 pb-3 pl-8 pt-0 text-center font-medium text-slate-200">
-                Rank
-              </th>
-              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
-                X Handle
-              </th>
-              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
-                PFP
-              </th>
-              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
-                Aura Rating
-              </th>
-              <th className="border-b border-slate-600 p-4 pb-3 pt-0 text-center font-medium text-slate-200">
-                Total Wins
-              </th>
+              {headers.map((header, idx) => (
+                <th
+                  key={idx}
+                  className="uppercase border-b border-slate-600 p-4 pb-3 pt-0 text-center font-bold text-slate-200"
+                >
+                  {header}
+                </th>
+              ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="font-bold ">
             {kols?.map((kol, index) => (
-              <tr key={kol.id} className="border-b border-slate-700">
+              <tr
+                key={kol.id}
+                className="border-b even:bg-black/40 border-slate-700"
+              >
                 <td className="p-4 pl-8">{index + 1}</td>
                 <td className="p-4">
+                  <div className="relative rounded-2xl overflow-hidden mx-auto size-28 lg:size-56 aspect-square">
+                    <Image
+                      src={kol.pfp}
+                      alt="kol pfp"
+                      className=" object-cover"
+                      fill={true}
+                      sizes="200px"
+                    />
+                  </div>
+                </td>
+                <td className="p-4">
                   <a
-                    className="text-blue-500 underline"
+                    className="underline"
                     href={`https://x.com/${kol.handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {kol.handle}
+                    @{kol.handle}
                   </a>
-                </td>
-                <td className="p-4">
-                  <Image
-                    className="rounded-full"
-                    src={kol.pfp}
-                    alt="kol pfp"
-                    width={50}
-                    height={50}
-                  />
                 </td>
                 <td className="p-4">{parseFloat(kol.aurarank).toFixed(2)}</td>
                 <td className="p-4">{kol.wins}</td>
@@ -80,12 +81,6 @@ export default function Rankings() {
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div className="py-8">
-        <button className="bg-red-600 text-white py-2 px-4 rounded">
-          <a href="/">Back</a>
-        </button>
       </div>
     </div>
   );

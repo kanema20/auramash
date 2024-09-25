@@ -3,9 +3,9 @@ import { cult1 } from "@/app/utils/assets";
 
 export const Footer = ({ totalWins }) => (
   <div className="pb-8">
-    <div className="flex flex-col items-center ">
-      <p className={"text-lg text-gray-400"}>Total Mashes</p>
-      <p className={"text-lg"}>{totalWins}</p>
+    <div className="flex text-2xl flex-col items-center ">
+      <p className={" text-gray-400"}>Total Mashes</p>
+      <p className={""}>{totalWins}</p>
     </div>
 
     <ul className="list-none space-x-2 inline-flex">

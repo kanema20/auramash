@@ -40,7 +40,7 @@ export const KOLCard: React.FC<KOLCardProps> = ({
         <div className="relative max-w-96 aspect-square w-full transition-all rounded-2xl group">
           {/* Image */}
           {/* Rotated border */}
-          <div className="absolute inset-0 border-[12px] overflow-hidden border-brand-primary rounded-2xl transform rotate-45 scale-75 ">
+          <div className="absolute inset-0 border-[24px] overflow-hidden border-bg-100 hover:border-brand-primary transition-all duration-300 rounded-2xl transform rotate-45 scale-75 ">
             <Image
               src={kol.pfp!}
               fill={true}
@@ -57,7 +57,7 @@ export const KOLCard: React.FC<KOLCardProps> = ({
 
       <p className="mt-4">
         <a
-          className="underline text-lg "
+          className="underline text-xl "
           href={`https://x.com/${kol?.handle}`}
           target="_blank"
         >

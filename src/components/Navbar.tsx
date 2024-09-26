@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
   type: string;
@@ -26,23 +27,30 @@ const Navbar: React.FC<NavbarProps> = ({ type }) => {
   if (!items.length) return null;
 
   return (
-    <nav className="fixed top-4 left-1/2 w-[346px] -translate-x-1/2 z-50 bg-bg-200/80 backdrop-blur-md text-lg font-bold text-white py-4 px-8 rounded-full shadow-lg">
-      <div className="container mx-auto flex justify-between items-center">
-        <ul className="flex space-x-6">
-          {items.map((item) => (
-            <li key={item.name}>
-              <a
-                href={item.href}
-                className="hover:text-gray-400 transition-all"
-                target={item.target}
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
+    <AnimatePresence>
+      <motion.nav
+        initial={{ y: -100, x: "-50%" }}
+        animate={{ y: 0, x: "-50%" }}
+        transition={{ duration: 1.8, ease: "easeOut" }}
+        className="fixed top-4 left-1/2 w-[346px] z-50 bg-bg-200/80 backdrop-blur-md text-lg font-bold text-white py-4 px-8 rounded-full shadow-lg"
+      >
+        <div className="container mx-auto flex justify-between items-center">
+          <ul className="flex space-x-6">
+            {items.map((item) => (
+              <li key={item.name}>
+                <a
+                  href={item.href}
+                  className="hover:text-gray-400 transition-all"
+                  target={item.target}
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </motion.nav>
+    </AnimatePresence>
   );
 };
 

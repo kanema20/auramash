@@ -32,6 +32,7 @@ export const HomeComponent = ({
   const [winner, setWinner] = useState<KOL>();
   const [diff, setDiff] = useState<number>(0);
   const [totalWins, setTotalWins] = useState<number>(0);
+  const [disabled, setDisabled] = useState<boolean>(false); // New state for disabling buttons
 
   let streak = useRef(0);
 
@@ -96,6 +97,7 @@ export const HomeComponent = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["getWinner"]);
+        setDisabled(false); // Re-enable buttons after mutation success
       },
     },
   );
@@ -109,6 +111,8 @@ export const HomeComponent = ({
   }, [kolOne, kolTwo]);
 
   const handleLeftClick = () => {
+    if (disabled) return; // Prevent multiple clicks
+    setDisabled(true); // Disable buttons during operation
     const { winnerRating } = updateEloRating(
       kolOne?.aurarank!,
       kolTwo?.aurarank!,
@@ -127,6 +131,8 @@ export const HomeComponent = ({
   };
 
   const handleRightClick = () => {
+    if (disabled) return; // Prevent multiple clicks
+    setDisabled(true); // Disable buttons during operation
     const { winnerRating } = updateEloRating(
       kolTwo?.aurarank!,
       kolOne?.aurarank!,
@@ -150,16 +156,17 @@ export const HomeComponent = ({
       <section className="flex pt-24 min-h-screen text-white font-extrabold bg-gradient-radial from-bg-100 to-70% to-bg-200 flex-col items-center justify-between p-6">
         <Header type={type} />
 
-        <h2 className="text-2xl text-center tracking-wide py-4">
+        <h2 className="text-2xl fadeIn duration-150 delay-75 text-center tracking-wide py-4">
           Who has more aura? Click to Choose.
         </h2>
 
-        <div className="flex h-[45vw] max-h-[460px] max-w-5xl justify-center items-center py-6 mx-12 w-full">
+        <div className="flex fadeIn duration-150 delay-150 h-[45vw] max-h-[460px] max-w-5xl justify-center items-center py-6 mx-12 w-full">
           <KOLCard
             kol={kolOne}
             handleClick={handleLeftClick}
             diff={diff}
             winner={winner}
+            disable={disabled} // Pass the disabled state
           />
 
           <h3 className="text-[48px] lg:text-[72px] px-6">OR</h3>
@@ -169,6 +176,7 @@ export const HomeComponent = ({
             handleClick={handleRightClick}
             diff={diff}
             winner={winner}
+            disable={disabled} // Pass the disabled state
           />
         </div>
 

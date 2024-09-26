@@ -18,7 +18,7 @@ export default function About() {
         </p>
 
         <p className="text-green-500 py-4">
-          Now it has a CT twist. Happy auramaxxing.
+          We gave it an aura twist. Happy auramaxxing.
         </p>
 
         <button className="bg-bg-100 text-white py-2 px-8 mt-4 rounded">

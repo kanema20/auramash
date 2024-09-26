@@ -27,7 +27,7 @@ const getKOLs = async () => {
     // })
     return (
     <div className="flex min-h-screen min-w-screen flex-col items-center justify-between p-24">
-        <h3 className="sub-page-title">Celeb <span className="aura-color">aura</span> Elo Rating</h3>
+        <h3 className="sub-page-title">Celeb<span className="aura-color">aura</span> Elo Rating</h3>
         <table>
             <thead>
                 <tr>

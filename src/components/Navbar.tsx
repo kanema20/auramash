@@ -13,7 +13,7 @@ const Navbar: React.FC<NavbarProps> = ({ type }) => {
       { name: "About", href: "/about", target: "_self" },
       type === "kol"
         ? { name: "Play Celeb Version", href: "/celebmash", target: "_self" }
-        : { name: "Play Kols Version", href: "/", target: "_self" },
+        : { name: "Play CT Version", href: "/", target: "_self" },
       {
         name: "$aura",
         href: "https://dexscreener.com/solana/9vix1vducteoc2wertsp2tudxxpwaf69aeet8enpjpsn?maker=AJUUQHndVntX3QwLpqB8ByfaZbAVS3pjuKjWkEqHSnPj",

@@ -31,3 +31,9 @@ enum Categories {
   CRYPTO
   MOVIES
 }
+
+model Counter {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    address String
+    count Int @default(0)
+}

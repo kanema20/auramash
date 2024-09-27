@@ -23,6 +23,10 @@ const config: Config = {
         200: "#0D0E13",
       },
     },
+    animation: {
+      ...require("tailwindcss/defaultConfig").theme.animation,
+      "bounce-short": "bounce 1s ease-in-out 3.5",
+    },
   },
   plugins: [],
 };

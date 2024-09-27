@@ -153,7 +153,7 @@ export const HomeComponent = ({
   return (
     <main>
       <Navbar type={type} />
-      <section className="flex pt-24 min-h-screen text-white font-extrabold bg-gradient-radial from-bg-100 to-70% to-bg-200 flex-col items-center justify-between p-6">
+      <section className="relative flex pt-24 min-h-screen text-white font-extrabold bg-gradient-radial from-bg-100 to-70% to-bg-200 flex-col items-center justify-between p-6">
         <Header type={type} />
 
         <h2 className="text-2xl fadeIn duration-150 delay-75 text-center tracking-wide py-4">
@@ -181,6 +181,16 @@ export const HomeComponent = ({
         </div>
 
         <Footer totalWins={totalWins} />
+        <div className="absolute bottom-4 right-8 flex flex-col items-center justify-center gap-2 opacity-65">
+          <p>Rankings</p>
+          {/* you dont need to use Image component for this so im diabling the warning*/}
+          {/*eslint-disable-next-line @next/next/no-img-element*/}
+          <img
+            src="/arrow.svg"
+            className="size-6 animate-bounce-short"
+            alt="arrow icon"
+          />
+        </div>
       </section>
       <section className="flex min-h-screen text-white font-extrabold bg-gradient-radial-b from-bg-100 to-50% to-bg-200 flex-col items-center justify-between p-6">
         <Rankings endpoint={getSortedRanksEndpoint} type={type} />

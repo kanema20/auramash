@@ -46,11 +46,12 @@ export const KOLCard: React.FC<KOLCardProps> = ({
         >
           <div className="relative max-w-96 aspect-square w-full transition-all rounded-2xl group">
             {/* Image */}
-            <div
+            <button
               className={
                 "absolute inset-0 border-[12px] sm:border-[24px] overflow-hidden border-bg-100 hover:border-brand-primary transition-all duration-300 rounded-2xl transform rotate-45 scale-75 " +
                 (disable ? "opacity-50 pointer-events-none" : "opacity-100")
               }
+              onClick={handleClick}
             >
               <Image
                 src={kol.pfp!}
@@ -60,9 +61,8 @@ export const KOLCard: React.FC<KOLCardProps> = ({
                 className={
                   "object-cover scale-[1.4] -rotate-45 cursor-pointer duration-300 transition-all hover:scale-[1.5] "
                 }
-                onClick={handleClick}
               />
-            </div>
+            </button>
           </div>
 
           <p className="mt-4">

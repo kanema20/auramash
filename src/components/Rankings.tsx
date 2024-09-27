@@ -1,4 +1,5 @@
 "use client";
+import { smashconfig } from "./smashconfig";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -45,8 +46,8 @@ export default function Rankings({
   return (
     <div className="flex flex-col items-center justify-center h-screen max-w-[2000px] w-full p-6">
       <h3 className="text-left uppercase w-full text-[32px] lg:text-[64px] my-16 ml-8">
-        {type == "kol" ? "CT " : "Celeb "}
-        <span className="text-green-500">aura</span> Elo Rating
+        {smashconfig[type].rankingTitle}
+        <span className="text-green-500"> aura</span> Elo Rating
       </h3>
 
       {/* Container for table with overflow handling */}

@@ -6,7 +6,7 @@ import { Header } from "../components/Header";
 import { KOLCard } from "../components/KolCard";
 import { Footer } from "../components/Footer";
 import { updateEloRating } from "@/app/utils/updateEloRating";
-import Rankings from "@/app/rankings/page";
+import Rankings from "@/components/Rankings";
 
 interface HomeProps {
   getKolsEndpoint: string;

@@ -5,7 +5,7 @@ export const smashconfig = {
     rankingTitle: "CT",
   },
   celeb: {
-    title: "Celebsmash",
+    title: "Celebmash",
     navbarId: 2,
     rankingTitle: "Celeb",
   },

@@ -10,6 +10,32 @@ const Navbar: React.FC<NavbarProps> = ({ type }) => {
   const [items, setItems] = useState<any[]>([]);
 
   useEffect(() => {
+    interface SmashConfig {
+      [key: string]: {
+        title: string;
+        navbarId: number;
+        rankingTitle: string;
+      };
+    }
+
+    const smashconfig: SmashConfig = {
+      kol: {
+        title: "Auramash",
+        navbarId: 1,
+        rankingTitle: "Auramash",
+      },
+      celeb: {
+        title: "Celebmash",
+        navbarId: 2,
+        rankingTitle: "Celebmash",
+      },
+      athlete: {
+        title: "Sportsmash",
+        navbarId: 3,
+        rankingTitle: "Sportsmash",
+      },
+    };
+
     const navbarId = smashconfig[type].navbarId;
     const navItems = [
       { name: "About", href: "/about", target: "_self" },

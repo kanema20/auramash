@@ -1,4 +1,12 @@
-export const smashconfig = {
+
+interface SmashConfig {
+  [key: string]: {
+    title: string;
+    navbarId: number;
+    rankingTitle: string;
+  };
+}
+export const smashconfig: SmashConfig = {
   kol: {
     title: "Facemash",
     navbarId: 1,

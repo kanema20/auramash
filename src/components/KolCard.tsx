@@ -37,7 +37,7 @@ export const KOLCard: React.FC<KOLCardProps> = ({
     <AnimatePresence mode="wait">
       {kol ? (
         <motion.div
-          key={kol.id} // Adding a key based on the kol id to trigger exit/enter animations
+          key={kol.id?.toString()} // Adding a key based on the kol id to trigger exit/enter animations
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }} // This is the exit animation

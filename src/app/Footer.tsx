@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cult1 } from "../app/utils/assets";
 
-export const Footer = ({ totalWins }) => (
+export const Footer = ({ totalWins }: { totalWins: number }) => (
   <div className="pb-8">
     <p>total mashes: {totalWins}</p>
 

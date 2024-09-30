@@ -1,4 +1,6 @@
 import { smashconfig } from "../components/smashconfig";
+
+
 export const Header = ({ type = "kol" }) => (
   <div className="tracking-widest duration-150 fadeIn py-8 text-center leading-none">
     <p className="text-brand-primary text-lg">[auramaxxing edition]</p>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cult1 } from "@/app/utils/assets";
 
-export const Footer = ({ totalWins }) => (
+export const Footer = ({ totalWins }: { totalWins: number }) => (
   <div className="pb-8 fadeIn delay-200 duration-150">
     <div className="flex text-2xl flex-col items-center ">
       <p className={" text-gray-400"}>Total Mashes</p>
